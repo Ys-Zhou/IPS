@@ -8,24 +8,18 @@ package beens;
 public class Log {
 
 	private String userId;
-	private String btId;
+	private String markerId;
 	private String date;
-	private int logType;
+	private int from;
+	private int to;
 
 	public Log() {
 
 		userId = null;
-		btId = null;
+		markerId = null;
 		date = null;
-		logType = -1;
-	}
-
-	public Log(String iUserId, String iBtId, String iDate, int iLogType) {
-
-		userId = iUserId;
-		btId = iBtId;
-		date = iDate;
-		logType = iLogType;
+		from = -1;
+		to = -1;
 	}
 
 	public String getUserId() {
@@ -38,24 +32,14 @@ public class Log {
 		userId = iUserId;
 	}
 
-	public String getBtId() {
+	public String getMarkerId() {
 
-		return btId;
+		return markerId;
 	}
 
-	public void setBtId(String iBtId) {
+	public void setMarkerId(String iMarkerId) {
 
-		btId = iBtId;
-	}
-
-	public int getLogType() {
-
-		return logType;
-	}
-
-	public void setLogType(int iLogType) {
-
-		logType = iLogType;
+		markerId = iMarkerId;
 	}
 
 	public String getDate() {
@@ -66,5 +50,25 @@ public class Log {
 	public void setDate(String iDate) {
 
 		date = iDate;
+	}
+
+	public int getFrom() {
+
+		return from;
+	}
+
+	public void setFrom(int iFrom) {
+
+		from = iFrom;
+	}
+
+	public int getTo() {
+
+		return to;
+	}
+
+	public void setTo(int iTo) {
+
+		to = iTo;
 	}
 }

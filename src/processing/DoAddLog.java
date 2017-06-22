@@ -21,12 +21,14 @@ public class DoAddLog {
 	public void addLog() throws Exception {
 
 		String userId = log.getUserId();
-		String btId = log.getBtId();
+		String markerId = log.getMarkerId();
 		String date = log.getDate();
-		int logType = log.getLogType();
+		int from = log.getFrom();
+		int to = log.getTo();
 
-		String sql = "INSERT INTO log VALUES('" + userId + "','" + btId + "','"
-				+ date + "'," + logType + ")";
+		String sql = String
+				.format("INSERT INTO log(userid, markerid, time, fromlv, tolv) VALUES('%s', '%s', '%s', %d, %d)",
+						userId, markerId, date, from, to);
 
 		dBConnector.runUpdate(sql);
 	}

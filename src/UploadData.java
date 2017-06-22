@@ -37,12 +37,18 @@ public class UploadData extends HttpServlet {
 		JSONObject jsonIn = JSONObject.fromObject(request
 				.getParameter("jsonIn"));
 		String userId = jsonIn.getString("userId");
-		String btId = jsonIn.getString("btId");
+		String markerId = jsonIn.getString("markerId");
 		String date = jsonIn.getString("date");
-		int logType = jsonIn.getInt("logType");
+		int from = jsonIn.getInt("from");
+		int to = jsonIn.getInt("to");
 
 		// Transform to JavaBean
-		Log log = new Log(userId, btId, date, logType);
+		Log log = new Log();
+		log.setUserId(userId);
+		log.setMarkerId(markerId);
+		log.setDate(date);
+		log.setFrom(from);
+		log.setTo(to);
 
 		// Create response data
 		JSONObject jsonOut = new JSONObject();
@@ -66,5 +72,4 @@ public class UploadData extends HttpServlet {
 		out.flush();
 		out.close();
 	}
-
 }

@@ -49,7 +49,7 @@ public class DBConnector {
 	 * Create DB connection
 	 */
 	public void connectAsDefaultLibrary() throws Exception {
-		dbUrl = "jdbc:mysql://localhost:3306/ips";
+		dbUrl = "jdbc:mysql://localhost:3306/ips?useSSL=false";
 		jdbcClassName = "com.mysql.jdbc.Driver";
 		username = "root";
 		password = "zhou";
