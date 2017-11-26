@@ -1,6 +1,4 @@
 .settings
-WebRoot/META-INF
-*.class
+build
 .classpath
 .project
-.tern-project
