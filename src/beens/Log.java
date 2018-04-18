@@ -2,73 +2,61 @@ package beens;
 
 /**
  * JavaBean: Log
- * 
+ *
  * @author Zhou Yan
  */
 public class Log {
 
-	private String userId;
-	private String markerId;
-	private String date;
-	private int from;
-	private int to;
+    private String androidID;
+    private String markerMac;
+    private String date;
+    private int rssi;
 
-	public Log() {
+    public Log() {
 
-		userId = null;
-		markerId = null;
-		date = null;
-		from = -1;
-		to = -1;
-	}
+        androidID = null;
+        markerMac = null;
+        date = null;
+        rssi = 0;
+    }
 
-	public String getUserId() {
+    public String getAndroidID() {
 
-		return userId;
-	}
+        return androidID;
+    }
 
-	public void setUserId(String iUserId) {
+    public void setAndroidID(String iAndroidID) {
 
-		userId = iUserId;
-	}
+        androidID = iAndroidID;
+    }
 
-	public String getMarkerId() {
+    public String getMarkerMac() {
 
-		return markerId;
-	}
+        return markerMac;
+    }
 
-	public void setMarkerId(String iMarkerId) {
+    public void setMarkerMac(String iMarkerMac) {
 
-		markerId = iMarkerId;
-	}
+        markerMac = iMarkerMac;
+    }
 
-	public String getDate() {
+    public String getDate() {
 
-		return date;
-	}
+        return date;
+    }
 
-	public void setDate(String iDate) {
+    public void setDate(String iDate) {
 
-		date = iDate;
-	}
+        date = iDate;
+    }
 
-	public int getFrom() {
+    public int getRssi() {
 
-		return from;
-	}
+        return rssi;
+    }
 
-	public void setFrom(int iFrom) {
+    public void setRssi(int iRssi) {
 
-		from = iFrom;
-	}
-
-	public int getTo() {
-
-		return to;
-	}
-
-	public void setTo(int iTo) {
-
-		to = iTo;
-	}
+        rssi = iRssi;
+    }
 }
