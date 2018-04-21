@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.sql.ResultSet;
 
-import net.sf.json.JSONObject;
 import net.sf.json.JSONArray;
 
-import processing.DoGetDetail;
+import processing.DoGetMacList;
+
 
 /**
  * Servlet implementation class GetDetail
  *
  * @author Zhou Yan
  */
-@WebServlet("/GetDetail")
-public class GetDetail extends HttpServlet {
+@WebServlet("/GetMacList")
+public class GetMacList extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public GetDetail() {
+    public GetMacList() {
         super();
     }
 
@@ -35,32 +35,23 @@ public class GetDetail extends HttpServlet {
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
 
-        JSONObject jsonOut = new JSONObject();
-
+        JSONArray array = new JSONArray();
         try {
 
-            DoGetDetail doGetDetail = new DoGetDetail();
-            ResultSet resultSet = doGetDetail.getDetail();
+            DoGetMacList doGetMacList = new DoGetMacList();
+            ResultSet resultSet = doGetMacList.getMacList();
 
-            int count = 0;
             while (resultSet.next()) {
-                JSONArray array = new JSONArray();
-                array.add(resultSet.getString(2));
-                array.add(resultSet.getString(3));
-                jsonOut.put(resultSet.getString(1), array);
-                count++;
+                array.add(resultSet.getString("mac"));
             }
-
-            jsonOut.put("count", count);
         } catch (Exception e) {
-
-            jsonOut.put("count", -1);
+            e.printStackTrace();
         }
 
         // Send response
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        out.print(jsonOut.toString());
+        out.print(array.toString());
         out.flush();
         out.close();
     }

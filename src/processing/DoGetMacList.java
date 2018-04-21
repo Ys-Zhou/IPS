@@ -2,18 +2,18 @@ package processing;
 
 import java.sql.ResultSet;
 
-public class DoGetDetail {
+public class DoGetMacList {
 
     private DBConnector dBConnector;
 
-    public DoGetDetail() throws Exception {
+    public DoGetMacList() throws Exception {
 
         dBConnector = DBConnector.Instance();
     }
 
-    public ResultSet getDetail() throws Exception {
+    public ResultSet getMacList() throws Exception {
 
-        String sql = "SELECT * FROM detail";
+        String sql = "SELECT mac FROM beacon";
         return dBConnector.runQuery(sql);
     }
 }
