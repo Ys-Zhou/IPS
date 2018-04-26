@@ -22,6 +22,7 @@ public class Log {
         androidID = null;
         date = null;
         flag = null;
+        beacons = new HashMap<>();
     }
 
     public String getAndroidID() {
@@ -54,12 +55,12 @@ public class Log {
         flag = iFlag;
     }
 
-    public Iterator<HashMap.Entry<String, JSONArray>> getBeacon() {
+    public Iterator<HashMap.Entry<String, JSONArray>> getBeacons() {
 
         return beacons.entrySet().iterator();
     }
 
-    public boolean addBeacon(String key, JSONArray value) {
+    public boolean addBeacons(String key, JSONArray value) {
         if (!beacons.containsKey(key)) {
             beacons.put(key, value);
             return true;

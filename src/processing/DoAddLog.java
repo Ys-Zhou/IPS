@@ -4,6 +4,7 @@ import beens.Log;
 import net.sf.json.JSONArray;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Processing Class: DoAddLog
@@ -26,13 +27,14 @@ public class DoAddLog {
         String androidID = log.getAndroidID();
         String date = log.getDate();
         String flag = log.getFlag();
+        Iterator<HashMap.Entry<String, JSONArray>> beacons = log.getBeacons();
 
-        while (log.getBeacon().hasNext()) {
-            HashMap.Entry<String, JSONArray> beacon = log.getBeacon().next();
+        while (beacons.hasNext()) {
+            HashMap.Entry<String, JSONArray> beacon = beacons.next();
             String mac = beacon.getKey();
             String rssis = beacon.getValue().toString();
             String sql = String
-                    .format("INSERT INTO log(androidid, time, flag, mac, rssis) VALUES('%s', '%s', '%s', %s, %s)",
+                    .format("INSERT INTO log(androidid, time, flag, mac, rssis) VALUES('%s', '%s', '%s', '%s', '%s')",
                             androidID, date, flag, mac, rssis);
             dBConnector.runUpdate(sql);
         }
