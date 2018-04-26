@@ -1,5 +1,10 @@
 package beens;
 
+import net.sf.json.JSONArray;
+
+import java.util.HashMap;
+import java.util.Iterator;
+
 /**
  * JavaBean: Log
  *
@@ -8,16 +13,15 @@ package beens;
 public class Log {
 
     private String androidID;
-    private String markerMac;
     private String date;
-    private int rssi;
+    private String flag;
+    private HashMap<String, JSONArray> beacons;
 
     public Log() {
 
         androidID = null;
-        markerMac = null;
         date = null;
-        rssi = 0;
+        flag = null;
     }
 
     public String getAndroidID() {
@@ -30,16 +34,6 @@ public class Log {
         androidID = iAndroidID;
     }
 
-    public String getMarkerMac() {
-
-        return markerMac;
-    }
-
-    public void setMarkerMac(String iMarkerMac) {
-
-        markerMac = iMarkerMac;
-    }
-
     public String getDate() {
 
         return date;
@@ -50,13 +44,26 @@ public class Log {
         date = iDate;
     }
 
-    public int getRssi() {
+    public String getFlag() {
 
-        return rssi;
+        return flag;
     }
 
-    public void setRssi(int iRssi) {
+    public void setFlag(String iFlag) {
 
-        rssi = iRssi;
+        flag = iFlag;
+    }
+
+    public Iterator<HashMap.Entry<String, JSONArray>> getBeacon() {
+
+        return beacons.entrySet().iterator();
+    }
+
+    public boolean addBeacon(String key, JSONArray value) {
+        if (!beacons.containsKey(key)) {
+            beacons.put(key, value);
+            return true;
+        }
+        return false;
     }
 }

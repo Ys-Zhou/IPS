@@ -1,6 +1,9 @@
 package processing;
 
 import beens.Log;
+import net.sf.json.JSONArray;
+
+import java.util.HashMap;
 
 /**
  * Processing Class: DoAddLog
@@ -21,14 +24,17 @@ public class DoAddLog {
     public void addLog() throws Exception {
 
         String androidID = log.getAndroidID();
-        String markerMac = log.getMarkerMac();
         String date = log.getDate();
-        int rssi = log.getRssi();
+        String flag = log.getFlag();
 
-        String sql = String
-                .format("INSERT INTO log(androidid, markermac, time, rssi) VALUES('%s', '%s', '%s', %d)",
-                        androidID, markerMac, date, rssi);
-
-        dBConnector.runUpdate(sql);
+        while (log.getBeacon().hasNext()) {
+            HashMap.Entry<String, JSONArray> beacon = log.getBeacon().next();
+            String mac = beacon.getKey();
+            String rssis = beacon.getValue().toString();
+            String sql = String
+                    .format("INSERT INTO log(androidid, time, flag, mac, rssis) VALUES('%s', '%s', '%s', %s, %s)",
+                            androidID, date, flag, mac, rssis);
+            dBConnector.runUpdate(sql);
+        }
     }
 }

@@ -1,12 +1,12 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import beens.Log;
 import processing.DoAddLog;
@@ -26,27 +26,31 @@ public class UploadData extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response) throws ServletException, IOException {
+                         HttpServletResponse response) throws IOException {
         doPost(request, response);
     }
 
     protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response) throws ServletException, IOException {
+                          HttpServletResponse response) throws IOException {
 
         // Read request
         JSONObject jsonIn = JSONObject.fromObject(request
                 .getParameter("jsonIn"));
-        String androidID = jsonIn.getString("androidID");
-        String markerMac = jsonIn.getString("markerMac");
-        String date = jsonIn.getString("date");
-        int rssi = jsonIn.getInt("rssi");
 
         // Transform to JavaBean
         Log log = new Log();
-        log.setAndroidID(androidID);
-        log.setMarkerMac(markerMac);
-        log.setDate(date);
-        log.setRssi(rssi);
+
+        log.setAndroidID(jsonIn.getString("androidID"));
+        log.setDate(jsonIn.getString("date"));
+        log.setFlag(jsonIn.getString("flag"));
+
+        JSONArray beacons = jsonIn.getJSONArray("beacons");
+        for (int i = 0; i < beacons.size(); i++) {
+            JSONObject beacon = beacons.getJSONObject(i);
+            String mac = beacon.getString("mac");
+            JSONArray rssis = beacon.getJSONArray("rssis");
+            log.addBeacon(mac, rssis);
+        }
 
         // Create response data
         JSONObject jsonOut = new JSONObject();
