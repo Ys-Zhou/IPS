@@ -49,7 +49,7 @@ public class UploadData extends HttpServlet {
             JSONObject beacon = beacons.getJSONObject(i);
             String mac = beacon.getString("mac");
             JSONArray rssis = beacon.getJSONArray("rssis");
-            log.addBeacon(mac, rssis);
+            log.addBeacons(mac, rssis);
         }
 
         // Create response data
@@ -60,11 +60,11 @@ public class UploadData extends HttpServlet {
             DoAddLog doAddLog = new DoAddLog(log);
             doAddLog.addLog();
             // Succeeded
-            jsonOut.put("addLogStmt", 1);
+            jsonOut.put("addLogStmt", 101);
         } catch (Exception e) {
-
+            e.printStackTrace();
             // Failed
-            jsonOut.put("addLogStmt", 0);
+            jsonOut.put("addLogStmt", 100);
         }
 
         // Send response
