@@ -13,7 +13,7 @@ public class DoGetMacList {
 
     public ResultSet getMacList() throws Exception {
 
-        String sql = "SELECT mac FROM `ips`.`beacon`";
+        String sql = "SELECT `mac` FROM `ips`.`beacon`";
         return dBConnector.runQuery(sql);
     }
 }
