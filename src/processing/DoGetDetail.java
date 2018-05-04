@@ -13,7 +13,7 @@ public class DoGetDetail {
 
     public ResultSet getDetail() throws Exception {
 
-        String sql = "SELECT * FROM detail";
+        String sql = "SELECT * FROM `ips`.`detail`";
         return dBConnector.runQuery(sql);
     }
 }
