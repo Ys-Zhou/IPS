@@ -3,7 +3,6 @@ package processing;
 import beens.Log;
 import net.sf.json.JSONArray;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
